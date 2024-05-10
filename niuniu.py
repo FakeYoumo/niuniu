@@ -62,12 +62,12 @@ async def main():
 用户发的post如下：
 '''
                     redditor = await reddit.redditor(need_judged_person)
-                    async for post in redditor.submissions.new(limit=15):
+                    async for post in redditor.submissions.new(limit=20):
                         title = post.title
                         body = post.selftext[:600]
                         prompt += f"标题:{title}\n正文:{body}\n"
                     prompt += "用户的历史回复如下："
-                    async for comment in redditor.comments.new(limit=80):
+                    async for comment in redditor.comments.new(limit=100):
                         body = comment.body
                         prompt += f"{body}\n"
 
