@@ -49,6 +49,18 @@ async def main():
                         if comment.author == op and comment.is_root == True:
                             body = f"{body}  \n\n {comment.body}"
                     await transport_subreddit.submit(mention.submission.title, selftext=body, flair_id=flair_id)
+                elif mention.body == f"u/{bot_name} 评论":
+                    if mention.is_root:
+                        continue
+                    comment = await reddit.comment(mention.parent_id)
+                    await comment.refresh()
+                    parent_comment = await reddit.comment(comment.parent_id)
+                    if hasattr(parent_comment, 'selftext'):
+                        body = f"面对post/comment：{parent_comment.selftext} \n\n,OP:{comment.author} 发出评论: \n\n{comment.body}"
+                    else:
+                        await parent_comment.refresh()
+                        body = f"面对post/comment：{parent_comment.body} \n\n,OP:{comment.author} 发出评论: \n\n{comment.body}"
+                    await transport_subreddit.submit(comment.body, selftext=body, flair_id=flair_id)
                 elif mention.body == f"u/{bot_name} 查成分":
                     comment = await reddit.comment(mention.parent_id)
                     need_judged_person = comment.author.name
