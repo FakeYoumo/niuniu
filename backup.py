@@ -12,6 +12,7 @@ def backup():
     password = os.getenv("REDDIT_PASSWORD")  # 账号密码
     client_id = os.getenv("CLIENT_ID")  # 账号密码
     client_secret = os.getenv("CLIENT_SECRET")  # 账号密码
+    print(backup_subreddit_name,client_id)
 
 
     user_agent = "autoreply bot created by u/Chinese_Dictator."  # 这一项可以随意填写
