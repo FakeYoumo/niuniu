@@ -1,0 +1,27 @@
+name: "backup fakeYoumo"
+
+on:
+  schedule:
+  - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    name: back up FakeYoumo
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "backup FakeYoumo"
+        id: backup-fakeyoumo
+        run: |
+          sudo apt-get update
+          sudo apt-get install python3
+          sudo pip install praw
+          python3 backup.py
+          
+        env:
+          REDDIT_USER_NAME: ${{ secrets.REDDIT_USER_NAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          BACKUP_SUBREDDIT_NAME: BACKUP_SUBREDDIT_NAME
+          
