@@ -36,11 +36,16 @@ jobs:
       - name: "Commit changes"
         run: |
           git add .
-          git commit -m "Backup Reddit posts"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Backup Reddit posts"
+          fi
 
       - name: "Push changes"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: success() && steps.Commit_changes.outcome == 'success'
         run: |
           git push
           
