@@ -12,7 +12,6 @@ def backup():
     password = os.environ.get("REDDIT_PASSWORD")  # 账号密码
     client_id = os.environ.get("CLIENT_ID")  # 账号密码
     client_secret = os.environ.get("CLIENT_SECRET")  # 账号密码
-    print(f"{backup_subreddit_name},{client_id}")
 
 
     user_agent = "autoreply bot created by u/Chinese_Dictator."  # 这一项可以随意填写
@@ -40,7 +39,11 @@ OP: u/{author}
 '''
     content = content.replace("{author}",f"{submission.author}")
     content = content.replace("{url}", submission.permalink)
-    content = content.replace("{content}", submission.selftext)
+    if len(submission.title) > 35:
+        content = content.replace("{content}", f"{submission.title}  \n{submission.selftext}")
+    else:
+        content = content.replace("{content}", submission.selftext)
+
     return content
 
 def get_post_title(submission):
@@ -66,6 +69,8 @@ def backup_post(submission):
     if check_is_backup(submission):
        return
     title = get_post_title(submission)
+    if len(title) > 35:
+        title = title[:35]
     body = get_post_content(submission)
     with open(f"{backup_subreddit_name}/{title}.md", "w",encoding="utf-8") as f:
         f.write(body)
