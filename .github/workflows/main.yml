@@ -20,14 +20,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install python3
           sudo pip install praw
-          echo 'Hi ${{ env.BACKUP_SUBREDDIT_NAME }},$BACKUP_SUBREDDIT_NAME,$CLIENT_SECRET'
           python3 backup.py
         env:
           REDDIT_USER_NAME: ${{ secrets.REDDIT_USER_NAME }}
           REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          BACKUP_SUBREDDIT_NAME: ${{ env.BACKUP_SUBREDDIT_NAME}}
+          BACKUP_SUBREDDIT_NAME: ${{ vars.BACKUP_SUBREDDIT_NAME}}
           
           
       - name: "Set up Git"
