@@ -10,6 +10,9 @@ jobs:
     name: back up FakeYoumo
     runs-on: ubuntu-22.04
     steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v2
+        
       - name: "backup FakeYoumo"
         id: backup-fakeyoumo
         run: |
@@ -26,9 +29,7 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           BACKUP_SUBREDDIT_NAME: BACKUP_SUBREDDIT_NAME
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-
+          
       - name: "Set up Git"
         run: |
           git config --global user.name "FakeYoumo"
