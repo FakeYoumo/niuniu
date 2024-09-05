@@ -3,15 +3,15 @@ from datetime import datetime,timedelta
 
 import praw
 
-backup_subreddit_name = os.getenv("BACKUP_SUBREDDIT_NAME")
+backup_subreddit_name = os.environ.get("BACKUP_SUBREDDIT_NAME")
 backup_file_ids = []
 
 def backup():
 
-    bot_name = os.getenv("REDDIT_USER_NAME")  # 账号名称
-    password = os.getenv("REDDIT_PASSWORD")  # 账号密码
-    client_id = os.getenv("CLIENT_ID")  # 账号密码
-    client_secret = os.getenv("CLIENT_SECRET")  # 账号密码
+    bot_name = os.environ.get("REDDIT_USER_NAME")  # 账号名称
+    password = os.environ.get("REDDIT_PASSWORD")  # 账号密码
+    client_id = os.environ.get("CLIENT_ID")  # 账号密码
+    client_secret = os.environ.get("CLIENT_SECRET")  # 账号密码
     print(f"{backup_subreddit_name},{client_id}")
 
 
