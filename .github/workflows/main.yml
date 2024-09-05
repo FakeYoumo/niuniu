@@ -16,6 +16,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install python3
           sudo pip install praw
+          ls
+          ls ../
           python3 backup.py
           
         env:
