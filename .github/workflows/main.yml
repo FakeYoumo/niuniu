@@ -9,6 +9,7 @@ jobs:
   backup:
     name: back up FakeYoumo
     runs-on: ubuntu-22.04
+    environment: backFakeYoumo
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v2
