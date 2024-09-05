@@ -34,6 +34,7 @@ jobs:
           git config --global user.name "FakeYoumo"
 
       - name: "Commit changes"
+        id: commit_changes
         run: |
           git add .
           if git diff --cached --quiet; then
@@ -45,7 +46,7 @@ jobs:
       - name: "Push changes"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: success() && steps.Commit_changes.outcome == 'success'
+        if: steps.commit_changes.outcome == 'success'
         run: |
           git push
           
