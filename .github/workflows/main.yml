@@ -20,7 +20,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install python3
           sudo pip install praw
-          echo "Hi ${{ env.BACKUP_SUBREDDIT_NAME }},$BACKUP_SUBREDDIT_NAME,$CLIENT_SECRET"
           python3 backup.py
         env:
           REDDIT_USER_NAME: ${{ secrets.REDDIT_USER_NAME }}
