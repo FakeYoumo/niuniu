@@ -22,7 +22,7 @@ def backup():
                               password=password)
     backup_subreddit =  reddit.subreddit(backup_subreddit_name)
     now = datetime.utcnow()
-    one_hour_ago = now - timedelta(hours=1)
+    one_hour_ago = now - timedelta(hours=5)
     # 获取新贴文
     for submission in backup_subreddit.new(limit=None):
         post_time = datetime.utcfromtimestamp(submission.created_utc)
