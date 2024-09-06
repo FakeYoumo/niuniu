@@ -31,7 +31,8 @@ jobs:
           
       - name: "Set up Git"
         run: |
-          git config --global user.name "FakeYoumo"
+          git config --global user.name "niuniu"
+          git config --global user.email "FakeYoumo@github.com"
 
       - name: "Commit changes"
         id: commit_changes
